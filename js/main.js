@@ -55,13 +55,18 @@
   $$(".reveal").forEach((el) => revealIO.observe(el));
 
   /* --- پالایش منو --- */
-  const tabs = $$(".tab");
+  const tabs = $$(".tab").filter((t) => t.dataset.cat);
   const dishes = $$("#menuGrid .dish");
-  tabs.forEach((tab) => tab.addEventListener("click", () => {
-    tabs.forEach((t) => { t.classList.toggle("is-on", t === tab); t.setAttribute("aria-pressed", String(t === tab)); });
-    const cat = tab.dataset.cat;
+  const menuSec = $("#menu");
+  const catsBox = $("#menuCats");
+  const applyFilter = (cat) => {
+    tabs.forEach((t) => {
+      const on = t.dataset.cat === cat;
+      t.classList.toggle("is-on", on);
+      t.setAttribute("aria-pressed", String(on));
+    });
     dishes.forEach((d) => {
-      const show = cat === "all" || d.dataset.cat === cat;
+      const show = d.dataset.cat === cat;
       d.classList.toggle("is-hidden", !show);
       if (show && !reduced) {
         d.style.animation = "none";
@@ -69,7 +74,26 @@
         d.style.animation = "dishIn .5s var(--ease) both";
       }
     });
+  };
+  const bringIntoView = (el) => requestAnimationFrame(() => {
+    const r = el.getBoundingClientRect();
+    if (r.top < 92 || r.top > innerHeight * 0.45)
+      scrollTo({ top: scrollY + r.top - 92, behavior: reduced ? "auto" : "smooth" });
+  });
+  tabs.forEach((tab) => tab.addEventListener("click", () => {
+    menuSec.dataset.view = "grid";
+    applyFilter(tab.dataset.cat);
   }));
+  $$(".cat-tile").forEach((tile) => tile.addEventListener("click", () => {
+    menuSec.dataset.view = "grid";
+    applyFilter(tile.dataset.cat);
+    bringIntoView($(".menu-tabs"));
+  }));
+  $("#catsBack").addEventListener("click", () => {
+    menuSec.dataset.view = "cats";
+    tabs.forEach((t) => { t.classList.remove("is-on"); t.setAttribute("aria-pressed", "false"); });
+    bringIntoView(catsBox);
+  });
   const st = document.createElement("style");
   st.textContent = "@keyframes dishIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}";
   document.head.appendChild(st);
