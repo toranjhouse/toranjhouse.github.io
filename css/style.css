@@ -131,15 +131,32 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
 .btn-sm { padding: .6em 1.4em; font-size: .88rem; }
 
 /* ---------- سربرگ ---------- */
+/* note: the blur lives on ::before — a backdrop-filter on .site-head itself would
+   become the containing block of the fixed full-screen mobile nav and clip it. */
 .site-head {
   position: fixed; inset-inline: 0; top: 0; z-index: 80;
-  transition: background .35s, box-shadow .35s, backdrop-filter .35s;
+  transition: box-shadow .35s;
 }
-.site-head.is-scrolled {
+.site-head::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: rgb(4 40 46 / 0);
+  -webkit-backdrop-filter: blur(0) saturate(1);
+  backdrop-filter: blur(0) saturate(1);
+  transition: background .35s, -webkit-backdrop-filter .35s, backdrop-filter .35s;
+}
+.site-head.is-scrolled::before {
   background: rgb(4 40 46 / .82);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
   backdrop-filter: blur(16px) saturate(1.2);
-  box-shadow: 0 10px 40px -18px rgb(0 0 0 / .7);
 }
+.site-head.is-scrolled { box-shadow: 0 10px 40px -18px rgb(0 0 0 / .7); }
+/* while the mobile nav is open the head melts into the overlay */
+.site-head.menu-open::before, .site-head.menu-open.is-scrolled::before {
+  background: rgb(3 34 38 / .96);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+.site-head.menu-open, .site-head.menu-open.is-scrolled { box-shadow: none; }
 .head-in { display: flex; align-items: center; gap: 26px; height: var(--head-h); }
 .head-line {
   height: 1.5px;
@@ -562,13 +579,16 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
   .nav {
     position: fixed; inset: 0; z-index: 70;
     background: rgb(3 34 38 / .96); backdrop-filter: blur(18px);
-    flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+    flex-direction: column; align-items: center; justify-content: flex-start; gap: 6px;
+    overflow-y: auto; padding: calc(var(--head-h) + 3vh) 20px 6vh;
     opacity: 0; visibility: hidden; transition: opacity .35s, visibility .35s;
   }
+  .nav a:first-child { margin-top: auto; }
+  .nav a:last-child { margin-bottom: auto; }
   .nav.is-open { opacity: 1; visibility: visible; }
   .nav a { font-family: var(--f-disp); font-size: 1.9rem; padding: 10px 26px; }
   .burger {
-    display: grid; gap: 5px; place-items: center; z-index: 75;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; z-index: 75;
     width: 44px; height: 44px; background: rgb(242 237 227 / .08);
     border: 1px solid rgb(242 237 227 / .25); border-radius: 12px; cursor: pointer;
   }

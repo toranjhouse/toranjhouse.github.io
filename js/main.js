@@ -17,11 +17,13 @@
   const closeNav = () => {
     nav.classList.remove("is-open");
     burger.setAttribute("aria-expanded", "false");
+    head.classList.remove("menu-open");
     document.body.style.overflow = "";
   };
   burger.addEventListener("click", () => {
     const open = nav.classList.toggle("is-open");
     burger.setAttribute("aria-expanded", String(open));
+    head.classList.toggle("menu-open", open);
     document.body.style.overflow = open ? "hidden" : "";
   });
   $$("#nav a").forEach((a) => a.addEventListener("click", closeNav));
