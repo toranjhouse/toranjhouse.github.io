@@ -110,4 +110,14 @@
     form.reset();
     function fail(msg) { note.className = "form-note err"; note.textContent = msg; return false; }
   });
+
+  /* --- دکمهٔ بازگشت به سرصفحه (مدالیون شمسه) --- */
+  const toTop = $("#toTop");
+  if (toTop) {
+    const tick = () => toTop.classList.toggle("show", window.scrollY > 520);
+    addEventListener("scroll", tick, { passive: true });
+    tick();
+    toTop.addEventListener("click", () =>
+      scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }));
+  }
 })();

@@ -685,6 +685,32 @@ body.is-night .menu::before { background: rgb(3 26 31 / .78); }
 body.is-night .tea { background: radial-gradient(70% 60% at 82% 40%, rgb(23 128 143 / .22), transparent 62%), linear-gradient(160deg, #062b31, var(--navy-950) 58%); }
 .tea { transition: background-color 1.6s var(--ease); }
 
+
+/* ---------- دکمهٔ بازگشت به سرصفحه: مدالیون شمسهٔ فیروزه‌ای ---------- */
+.totop{
+  position: fixed; left: 1.3rem; bottom: 1.3rem; z-index: 70;
+  width: 62px; height: 62px; padding: 0; border: 0; background: none; cursor: pointer;
+  opacity: 0; visibility: hidden; transform: translateY(18px) scale(.86);
+  transition: opacity .55s var(--ease), transform .55s var(--ease), visibility 0s linear .55s;
+}
+.totop.show{
+  opacity: 1; visibility: visible; transform: none;
+  transition: opacity .55s var(--ease), transform .55s var(--ease);
+}
+.totop svg{
+  display: block; width: 100%; height: 100%;
+  filter: drop-shadow(0 8px 18px rgb(0 0 0 / .5));
+  transition: transform .5s var(--ease), filter .5s var(--ease);
+}
+.totop .tt-star{ transform-box: fill-box; transform-origin: center; transition: transform .9s var(--ease); }
+.totop:hover svg, .totop:focus-visible svg{
+  transform: scale(1.08);
+  filter: drop-shadow(0 10px 22px rgb(0 0 0 / .55)) drop-shadow(0 0 12px rgb(217 164 65 / .38));
+}
+.totop:hover .tt-star, .totop:focus-visible .tt-star{ transform: rotate(45deg); }
+.totop:focus-visible{ outline: 2px solid #d9a441; outline-offset: 4px; border-radius: 50%; }
+@media (max-width: 700px){ .totop{ width: 54px; height: 54px; left: 1rem; bottom: 1rem; } }
+
 /* ---------- کاهش حرکت ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
