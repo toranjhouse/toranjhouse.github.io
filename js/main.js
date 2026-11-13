@@ -72,6 +72,23 @@
   st.textContent = "@keyframes dishIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}";
   document.head.appendChild(st);
 
+  /* --- دکمهٔ روز/شب هیرو: گذار آرام نور --- */
+  const hero = $("#hero");
+  const dn = $("#daynight");
+  const setDay = (on) => {
+    hero.classList.toggle("is-day", on);
+    dn.setAttribute("aria-pressed", String(on));
+    dn.querySelector(".dn-label").textContent = on ? "شب" : "روز";
+    dn.setAttribute("aria-label", on
+      ? "حالت شب: نور حیاط آرام کم می‌شود"
+      : "حالت روز: نور حیاط آرام روشن می‌شود");
+    try { localStorage.setItem("orsi-day", on ? "1" : "0"); } catch (e) {}
+  };
+  dn.addEventListener("click", () => setDay(!hero.classList.contains("is-day")));
+  let dayPref = null;
+  try { dayPref = localStorage.getItem("orsi-day"); } catch (e) {}
+  if (dayPref === "1") setTimeout(() => setDay(true), 700);
+
   /* --- فرم رزرو (نمونهٔ نمایشی) --- */
   const form = $("#resForm");
   const note = $("#formNote");

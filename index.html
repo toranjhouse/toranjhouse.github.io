@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ارسی | رستوران و چای‌خانهٔ سنتی ایرانی</title>
 <meta name="description" content="ارسی؛ رستوران و چای‌خانهٔ سنتی در حیاطِ خانه‌ای تاریخی: کباب بر آتش زغال، خورش‌های جاافتاده، پلوهای زعفرانی و چای دم‌کشیده در استکان کمرباریک.">
-<meta name="theme-color" content="#0b1533">
+<meta name="theme-color" content="#06343b">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/vazirmatn-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/markazi-text-var.woff2" as="font" type="font/woff2" crossorigin>
@@ -43,13 +43,17 @@
 
 <!-- ================= HERO ================= -->
 <section class="hero" id="hero">
-  <div class="hero-bg" aria-hidden="false">
-    <img src="assets/img/hero-880.webp"
+  <div class="hero-bg">
+    <img class="lay lay-night" src="assets/img/hero-880.webp"
          srcset="assets/img/hero-880.webp 880w, assets/img/hero-1376.webp 1376w"
          sizes="100vw"
          alt="حیاط خانهٔ تاریخی ارسی در ساعت آبی؛ حوض فیروزه‌ای با فواره، تخت‌های فرش‌انداز و فانوس‌های روشن زیر ایوان آجری">
+    <img class="lay lay-day" src="assets/img/space-courtyard-720.webp"
+         srcset="assets/img/space-courtyard-720.webp 720w, assets/img/space-courtyard-1200.webp 1200w"
+         sizes="100vw" decoding="async" aria-hidden="true" alt="">
   </div>
-  <div class="hero-veil" aria-hidden="true"></div>
+  <div class="hero-veil veil-night" aria-hidden="true"></div>
+  <div class="hero-veil veil-day" aria-hidden="true"></div>
   <div class="wrap hero-in">
     <p class="eyebrow reveal">چای‌خانه و سفره‌خانهٔ سنتی · خانهٔ تاریخی، محلهٔ عودلاجان</p>
     <h1 class="reveal">سفره‌ای به وسعتِ <em>ایران</em></h1>
@@ -65,6 +69,11 @@
       <li><b>موسیقی زندهٔ ایرانی</b><span>پنجشنبه‌ها و جمعه‌ها</span></li>
     </ul>
   </div>
+  <button class="daynight" id="daynight" type="button" aria-pressed="false" aria-label="حالت روز: نور حیاط آرام روشن می‌شود">
+    <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5 5l1.8 1.8M17.2 17.2 19 19M19 5l-1.8 1.8M6.8 17.2 5 19"/></svg>
+    <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 14.2A8.5 8.5 0 0 1 9.8 3.6a8.5 8.5 0 1 0 10.6 10.6Z"/></svg>
+    <span class="dn-label">روز</span>
+  </button>
   <a class="hero-scroll" href="#story" aria-label="رفتن به بخش حکایت ما">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
   </a>
