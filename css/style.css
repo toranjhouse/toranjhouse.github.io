@@ -181,8 +181,9 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
 .hero-bg { position: absolute; inset: 0; }
 .hero-bg .lay {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%;
-  transform: scale(1.05); animation: heroIn 2.4s var(--ease) .15s both, heroZoom 22s ease-out 2.4s forwards;
+  transform: scale(1.05); animation: heroZoom 22s ease-out 2.4s forwards;
 }
+.lay-day { animation: heroIn 2.4s var(--ease) .15s both, heroZoom 22s ease-out 2.4s forwards; }
 /* یک مکان، دو نور: روز و شب خیلی آرام در هم محو می‌شوند */
 .lay-night { opacity: 0; transition: opacity 6s cubic-bezier(.45, .05, .35, .95); }
 .hero.is-night .lay-night { opacity: 1; }
