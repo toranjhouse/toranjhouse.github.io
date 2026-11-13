@@ -184,11 +184,11 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
   transform: scale(1.05); animation: heroIn 2.4s var(--ease) .15s both, heroZoom 22s ease-out 2.4s forwards;
 }
 /* یک مکان، دو نور: روز و شب خیلی آرام در هم محو می‌شوند */
-.lay-night { opacity: 0; transition: opacity 6s var(--ease); }
+.lay-night { opacity: 0; transition: opacity 6s cubic-bezier(.45, .05, .35, .95); }
 .hero.is-night .lay-night { opacity: 1; }
 @keyframes heroIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes heroZoom { from { transform: scale(1.07); } to { transform: scale(1.0); } }
-.hero-veil { position: absolute; inset: 0; transition: opacity 6s var(--ease); }
+.hero-veil { position: absolute; inset: 0; transition: opacity 6s cubic-bezier(.45, .05, .35, .95); }
 .veil-night {
   opacity: 0;
   background:
@@ -230,6 +230,7 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
   transition: border-color .25s, background .25s, transform .25s var(--ease);
 }
 .daynight:hover { border-color: var(--gold-2); transform: translateY(-2px); }
+.daynight:active { transform: scale(.94); }
 .daynight svg { width: 17px; height: 17px; }
 .daynight .ic-sun { display: none; }
 .hero.is-night .daynight .ic-sun { display: block; }
