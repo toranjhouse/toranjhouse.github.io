@@ -72,22 +72,28 @@
   st.textContent = "@keyframes dishIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}";
   document.head.appendChild(st);
 
-  /* --- دکمهٔ روز/شب هیرو: گذار آرام نور --- */
+  /* --- دکمهٔ روز/شب هیرو: یک عکس، گذار آرامِ نور --- */
   const hero = $("#hero");
   const dn = $("#daynight");
-  const setDay = (on) => {
-    hero.classList.toggle("is-day", on);
+  const syncDn = () => {
+    const on = hero.classList.contains("is-night");
     dn.setAttribute("aria-pressed", String(on));
-    dn.querySelector(".dn-label").textContent = on ? "شب" : "روز";
+    dn.querySelector(".dn-label").textContent = on ? "روز" : "شب";
     dn.setAttribute("aria-label", on
-      ? "حالت شب: نور حیاط آرام کم می‌شود"
-      : "حالت روز: نور حیاط آرام روشن می‌شود");
-    try { localStorage.setItem("orsi-day", on ? "1" : "0"); } catch (e) {}
+      ? "حالت روز: نور حیاط آرام روشن می‌شود"
+      : "حالت شب: همان حیاط آرام به سمت شب می‌رود");
   };
-  dn.addEventListener("click", () => setDay(!hero.classList.contains("is-day")));
-  let dayPref = null;
-  try { dayPref = localStorage.getItem("orsi-day"); } catch (e) {}
-  if (dayPref === "1") setTimeout(() => setDay(true), 700);
+  const setNight = (on) => {
+    hero.classList.toggle("is-night", on);
+    syncDn();
+    try { localStorage.setItem("orsi-night", on ? "1" : "0"); } catch (e) {}
+  };
+  dn.addEventListener("click", () => setNight(!hero.classList.contains("is-night")));
+  let nightPref = null;
+  try { nightPref = localStorage.getItem("orsi-night"); } catch (e) {}
+  if (nightPref === "1") hero.classList.add("is-night");
+  else if (nightPref === "0") hero.classList.remove("is-night");
+  syncDn();
 
   /* --- فرم رزرو (نمونهٔ نمایشی) --- */
   const form = $("#resForm");
