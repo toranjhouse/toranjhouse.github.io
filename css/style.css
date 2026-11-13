@@ -731,6 +731,25 @@ body.is-night .tea { background: radial-gradient(70% 60% at 82% 40%, rgb(23 128 
 .totop:focus-visible{ outline: 2px solid #d9a441; outline-offset: 4px; border-radius: 50%; }
 @media (max-width: 700px){ .totop{ width: 54px; height: 54px; left: 1rem; bottom: 1rem; } }
 
+/* ---------- نوار عکس‌های چای‌خانه و بار قلیان ---------- */
+.tea-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: clamp(30px, 4vw, 54px); }
+.tea-photos figure {
+  position: relative; margin: 0; border-radius: 18px; overflow: hidden;
+  box-shadow: 0 18px 44px -22px rgb(0 0 0 / .85);
+}
+.tea-photos img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; transition: transform .9s var(--ease); }
+.tea-photos figure:hover img { transform: scale(1.05); }
+.tea-photos figure::after {
+  content: ""; position: absolute; inset: 8px; border-radius: 12px; pointer-events: none;
+  border: 1px solid rgb(217 164 65 / .5);
+}
+.tea-photos figcaption {
+  position: absolute; inset-inline: 0; bottom: 0; z-index: 2;
+  padding: 26px 18px 14px; color: var(--cream); font-size: .92rem;
+  background: linear-gradient(to top, rgb(3 26 31 / .92), transparent);
+}
+@media (max-width: 700px) { .tea-photos { grid-template-columns: 1fr; } }
+
 /* ---------- ویترین دسته‌های منو ---------- */
 .menu[data-view="cats"] .menu-tabs, .menu[data-view="cats"] .menu-grid { display: none; }
 .menu[data-view="grid"] .menu-cats { display: none; }
