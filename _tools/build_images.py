@@ -46,7 +46,7 @@ def _srgb(x):  # linear -> sRGB
     x = np.clip(x, 0, 1)
     return np.where(x <= 0.0031308, x * 12.92, 1.055 * x ** (1 / 2.4) - 0.055)
 
-def cutout(src, name, sizes=(880, 480), thresh=11.0):
+def cutout(src, name, sizes=(880, 480), thresh=11.0, kmin=0.0, fill=True):
     """Key out the navy backdrop *and its cast shadow*.
 
     A shadow is just the backdrop colour scaled towards black, so every pixel is compared
@@ -69,7 +69,7 @@ def cutout(src, name, sizes=(880, 480), thresh=11.0):
         bg = np.clip(A @ coef, 1e-4, 1)
         sel = ring & (np.abs(lin - bg).max(-1) < 0.02)
 
-    k = np.clip((lin * bg).sum(-1) / (bg * bg).sum(-1), 0.0, 1.25)[..., None]
+    k = np.clip((lin * bg).sum(-1) / (bg * bg).sum(-1), kmin, 1.25)[..., None]
     nearest = _srgb(k * bg).astype(np.float32)          # closest "backdrop or shadow" colour
     d = cv2.cvtColor(rgb, cv2.COLOR_RGB2LAB) - cv2.cvtColor(nearest, cv2.COLOR_RGB2LAB)
     dist = np.sqrt((d ** 2).sum(-1))
@@ -79,9 +79,12 @@ def cutout(src, name, sizes=(880, 480), thresh=11.0):
     n, lbl, stats, _ = cv2.connectedComponentsWithStats(mask, 8)
     k_big = 1 + int(np.argmax(stats[1:, cv2.CC_STAT_AREA]))
     blob = (lbl == k_big).astype(np.uint8) * 255
-    cnts, _ = cv2.findContours(blob, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    solid = np.zeros_like(blob)
-    cv2.drawContours(solid, cnts, -1, 255, cv2.FILLED)
+    if fill:
+        cnts, _ = cv2.findContours(blob, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+        solid = np.zeros_like(blob)
+        cv2.drawContours(solid, cnts, -1, 255, cv2.FILLED)
+    else:
+        solid = blob
     solid = cv2.morphologyEx(solid, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7)))
 
     # soft, slightly contracted edge (avoids a backdrop-coloured fringe)
