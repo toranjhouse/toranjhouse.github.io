@@ -21,11 +21,11 @@
 
 /* ---------- توکن‌ها ---------- */
 :root {
-  --navy-950: #032226;
-  --navy-900: #06343b;
-  --navy-800: #0a444d;
-  --navy-700: #0e545e;
-  --navy-600: #146672;
+  --navy-950: #04262b;
+  --navy-900: #07454f;
+  --navy-800: #0c5561;
+  --navy-700: #106471;
+  --navy-600: #167683;
   --cream: #f2ede3;
   --cream-2: #e7dfcf;
   --cream-3: #fbf8f1;
@@ -59,7 +59,7 @@ html {
 }
 body {
   margin: 0;
-  background: var(--navy-900);
+  background: url("../assets/img/pattern-kashi.svg") center / 180px 180px repeat var(--navy-900);
   color: var(--cream);
   font-family: var(--f-body);
   font-size: clamp(15px, .55vw + 13px, 17px);
@@ -145,7 +145,7 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
   transition: background .35s, -webkit-backdrop-filter .35s, backdrop-filter .35s;
 }
 .site-head.is-scrolled::before {
-  background: rgb(4 40 46 / .82);
+  background: rgb(6 52 60 / .85);
   -webkit-backdrop-filter: blur(16px) saturate(1.2);
   backdrop-filter: blur(16px) saturate(1.2);
 }
@@ -323,9 +323,10 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
   position: relative; padding: clamp(76px, 10vw, 132px) 0;
   background:
     radial-gradient(90% 60% at 50% -8%, rgb(20 102 114 / .5), transparent 60%),
-    url("../assets/img/pattern-girih.svg"),
+    linear-gradient(rgb(5 44 51 / .44), rgb(5 44 51 / .44)),
+    url("../assets/img/pattern-kashi.svg"),
     var(--navy-900);
-  background-size: auto, 184px 184px, auto;
+  background-size: auto, auto, 180px 180px, auto;
 }
 .menu::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;
@@ -483,8 +484,12 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
 .tea {
   position: relative; padding: clamp(76px, 10vw, 132px) 0; overflow: hidden;
   background:
+    linear-gradient(to left, rgb(4 40 46 / .5), rgb(4 40 46 / .18) 52%, transparent 78%),
     radial-gradient(70% 60% at 82% 40%, rgb(23 128 143 / .35), transparent 62%),
-    linear-gradient(160deg, #083b41, var(--navy-900) 58%);
+    linear-gradient(160deg, rgb(8 59 65 / .66), rgb(6 52 59 / .74) 58%),
+    url("../assets/img/pattern-kashi.svg"),
+    var(--navy-900);
+  background-size: auto, auto, 180px 180px, auto;
 }
 .tea-grid { display: grid; grid-template-columns: 6fr 5fr; gap: clamp(34px, 5vw, 70px); align-items: center; }
 .tea h2 { font-size: clamp(2.1rem, 4.6vw, 3.3rem); margin-top: 6px; }
@@ -549,7 +554,7 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
 .form-note.err { color: #b3372a; }
 
 /* ---------- پابرگ ---------- */
-.site-foot { background: var(--navy-950); padding: clamp(52px, 7vw, 84px) 0 0; }
+.site-foot { background: linear-gradient(rgb(3 32 37 / .72), rgb(3 32 37 / .72)), url("../assets/img/pattern-kashi.svg") center / 180px 180px, var(--navy-950); padding: clamp(52px, 7vw, 84px) 0 0; }
 .foot-grid { display: grid; grid-template-columns: 5fr 3fr 4fr; gap: clamp(30px, 4vw, 60px); padding-bottom: 44px; }
 .foot-logo { width: 120px; }
 .foot-brand p { margin-top: 14px; color: rgb(242 237 227 / .68); font-size: .92rem; max-width: 40ch; }
@@ -642,8 +647,8 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
 :root {
   --accent-warm: #a63a2b;
   --accent-cool: #17808f;
-  --sec-light: #f2ede3;
-  --sec-light-2: #e7dfcf;
+  --sec-light: #e6f3f0;
+  --sec-light-2: #d9ece7;
   --on-light: #1b2440;
   --on-light-soft: #4a5573;
   --on-light-label: rgb(27 36 64 / .8);
@@ -653,13 +658,13 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
   --ph: rgb(27 36 64 / .38);
   --ok: #1c7a45;
   --err: #b3372a;
-  --tile-veil: 0;
+  --tile-veil: .16;
 }
 body.is-night {
   --accent-warm: #e59a6c;
   --accent-cool: #4fd0dc;
-  --sec-light: #073138;
-  --sec-light-2: #062b31;
+  --sec-light: #0a4650;
+  --sec-light-2: #083c46;
   --on-light: #edf4f2;
   --on-light-soft: rgb(237 244 242 / .72);
   --on-light-label: rgb(237 244 242 / .8);
@@ -669,7 +674,7 @@ body.is-night {
   --ph: rgb(237 244 242 / .35);
   --ok: #86e0a7;
   --err: #ff9c8d;
-  --tile-veil: .13;
+  --tile-veil: .38;
 }
 .story, .spaces, .reserve {
   position: relative;
@@ -681,7 +686,7 @@ body.is-night {
 .story::before, .spaces::before, .reserve::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   opacity: var(--tile-veil); transition: opacity 1.6s var(--ease);
-  background: url("../assets/img/pattern-girih.svg") center / 184px 184px;
+  background: url("../assets/img/pattern-kashi.svg") center / 180px 180px;
 }
 .story > *, .spaces > *, .reserve > * { position: relative; }
 
@@ -722,7 +727,7 @@ body.is-night .res-form select option { background: #083b43; color: #edf4f2; }
 .form-note.err { color: var(--err); }
 body.is-night .menu::before { background: rgb(3 26 31 / .78); }
 .menu::before { transition: background-color 1.6s var(--ease); }
-body.is-night .tea { background: radial-gradient(70% 60% at 82% 40%, rgb(23 128 143 / .22), transparent 62%), linear-gradient(160deg, #062b31, var(--navy-950) 58%); }
+body.is-night .tea { background: linear-gradient(to left, rgb(3 32 38 / .55), rgb(3 32 38 / .2) 52%, transparent 78%), radial-gradient(70% 60% at 82% 40%, rgb(23 128 143 / .22), transparent 62%), linear-gradient(160deg, rgb(6 43 49 / .62), rgb(4 38 44 / .72) 58%), url("../assets/img/pattern-kashi.svg") center / 180px 180px, var(--navy-950); }
 .tea { transition: background-color 1.6s var(--ease); }
 
 
