@@ -98,7 +98,7 @@
   st.textContent = "@keyframes dishIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}";
   document.head.appendChild(st);
 
-  /* --- دکمهٔ روز/شب هیرو: یک عکس، گذار آرامِ نور --- */
+  /* --- دکمه‌ی روز/شب هیرو: یک عکس، گذار آرامِ نور --- */
   const hero = $("#hero");
   const dn = $("#daynight");
   const syncDn = () => {
@@ -118,7 +118,7 @@
   hero.classList.toggle("is-night", document.body.classList.contains("is-night"));
   syncDn();
 
-  /* --- فرم رزرو (نمونهٔ نمایشی) --- */
+  /* --- فرم رزرو (نمونه‌ی نمایشی) --- */
   const form = $("#resForm");
   const note = $("#formNote");
   const dateIn = form.querySelector('input[name="date"]');
@@ -129,15 +129,15 @@
     const phone = form.elements.namedItem("phone").value.replace(/[\s-]/g, "");
     const okPhone = /^(?:\+98|0)?9\d{9}$/.test(phone);
     if (!name) return fail("لطفاً نام خود را بنویسید.");
-    if (!okPhone) return fail("شمارهٔ تماس معتبر نیست؛ نمونه: ۰۹۱۲۳۴۵۶۷۸۹");
-    if (!dateIn.value) return fail("تاریخ رفتن به خانهٔ ترنج را انتخاب کنید.");
+    if (!okPhone) return fail("شماره‌ی تماس معتبر نیست؛ نمونه: ۰۹۱۲۳۴۵۶۷۸۹");
+    if (!dateIn.value) return fail("تاریخ رفتن به خانه‌ی ترنج را انتخاب کنید.");
     note.className = "form-note ok";
     note.textContent = "سپاس " + name + " عزیز! درخواست رزرو شما ثبت شد؛ میزبانِ خانه به‌زودی با شما تماس می‌گیرد. (این نسخه نمایشی است و درخواستی ارسال نمی‌شود.)";
     form.reset();
     function fail(msg) { note.className = "form-note err"; note.textContent = msg; return false; }
   });
 
-  /* --- دکمهٔ بازگشت به سرصفحه (مدالیون شمسه) --- */
+  /* --- دکمه‌ی بازگشت به سرصفحه (مدالیون شمسه) --- */
   const toTop = $("#toTop");
   if (toTop) {
     const tick = () => toTop.classList.toggle("show", window.scrollY > 520);
