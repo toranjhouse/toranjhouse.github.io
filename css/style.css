@@ -303,11 +303,11 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
     radial-gradient(90% 60% at 50% -8%, rgb(20 102 114 / .5), transparent 60%),
     url("../assets/img/pattern-girih.svg"),
     var(--navy-900);
-  background-size: auto, 132px 132px, auto;
+  background-size: auto, 184px 184px, auto;
 }
 .menu::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: rgb(6 52 59 / .62);
+  background: linear-gradient(rgb(6 52 59 / .34), rgb(6 52 59 / .5) 55%, rgb(6 52 59 / .34));
 }
 .menu > * { position: relative; }
 .menu .sec-sub { color: rgb(242 237 227 / .66); }
