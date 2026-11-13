@@ -253,7 +253,7 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
 .story .eyebrow::before { background-image: url("../assets/img/star.svg"); }
 .story h2 { font-size: clamp(2.1rem, 4.6vw, 3.3rem); margin-top: 6px; }
 .story h2 em { color: var(--carpet); }
-.story .lead { font-size: 1.12rem; font-weight: 600; color: var(--ink); margin-top: 14px; }
+.story .lead { font-size: 1.12rem; font-weight: 600; color: var(--on-light); margin-top: 14px; transition: color 1.6s var(--ease); }
 .story-copy p + p { margin-top: 12px; color: var(--ink-soft); }
 .story-media { margin: 0; position: relative; }
 .arch {
@@ -561,6 +561,94 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
   .foot-grid { grid-template-columns: 1fr; }
   .story-cap { width: 92%; }
 }
+
+
+/* ---------- روز/شب برای کل صفحه: روز = همین حالا، شب = زمینهٔ تیره با لعابِ کاشی ---------- */
+:root {
+  --accent-warm: #a63a2b;
+  --accent-cool: #17808f;
+  --sec-light: #f2ede3;
+  --sec-light-2: #e7dfcf;
+  --on-light: #1b2440;
+  --on-light-soft: #4a5573;
+  --on-light-label: rgb(27 36 64 / .8);
+  --card: #fbf8f1;
+  --field: #ffffff;
+  --field-br: rgb(27 36 64 / .16);
+  --ph: rgb(27 36 64 / .38);
+  --ok: #1c7a45;
+  --err: #b3372a;
+  --tile-veil: 0;
+}
+body.is-night {
+  --accent-warm: #e59a6c;
+  --accent-cool: #4fd0dc;
+  --sec-light: #073138;
+  --sec-light-2: #062b31;
+  --on-light: #edf4f2;
+  --on-light-soft: rgb(237 244 242 / .72);
+  --on-light-label: rgb(237 244 242 / .8);
+  --card: #0c454e;
+  --field: #083b43;
+  --field-br: rgb(237 244 242 / .2);
+  --ph: rgb(237 244 242 / .35);
+  --ok: #86e0a7;
+  --err: #ff9c8d;
+  --tile-veil: .13;
+}
+.story, .spaces, .reserve {
+  position: relative;
+  background: var(--sec-light);
+  color: var(--on-light);
+  transition: background-color 1.6s var(--ease), color 1.6s var(--ease);
+}
+.spaces { background: var(--sec-light-2); }
+.story::before, .spaces::before, .reserve::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  opacity: var(--tile-veil); transition: opacity 1.6s var(--ease);
+  background: url("../assets/img/pattern-girih.svg") center / 184px 184px;
+}
+.story > *, .spaces > *, .reserve > * { position: relative; }
+
+.story h2 em, .story .eyebrow, .reserve h2 em, .reserve .eyebrow, .story-link a {
+  color: var(--accent-warm); transition: color 1.6s var(--ease);
+}
+.spaces h2 em, .spaces .eyebrow, .spaces-soon b, .res-info a, .res-info svg {
+  color: var(--accent-cool); transition: color 1.6s var(--ease);
+}
+.story-copy p + p, .story-points li, .spaces .sec-sub, .reserve .res-copy > p,
+.res-info span, .spaces-soon { color: var(--on-light-soft); transition: color 1.6s var(--ease); }
+.story-link a { border-bottom-color: rgb(166 58 43 / .35); }
+body.is-night .story-link a { border-bottom-color: rgb(229 154 108 / .4); }
+.spaces-soon {
+  background: rgb(255 255 255 / .5); border-color: rgb(23 128 143 / .45);
+  transition: background-color 1.6s var(--ease), border-color 1.6s var(--ease), color 1.6s var(--ease);
+}
+body.is-night .spaces-soon { background: rgb(255 255 255 / .05); border-color: rgb(79 208 220 / .35); }
+body.is-night .story-cap { background: #05262c; }
+.story-cap { transition: background-color 1.6s var(--ease); }
+
+.res-form {
+  background: var(--card); border-color: rgb(27 36 64 / .12);
+  transition: background-color 1.6s var(--ease), border-color 1.6s var(--ease);
+}
+body.is-night .res-form { border-color: rgb(237 244 242 / .14); }
+.res-form label > span { color: var(--on-light-label); transition: color 1.6s var(--ease); }
+.res-form input, .res-form select, .res-form textarea {
+  background: var(--field); color: var(--on-light); border-color: var(--field-br);
+  transition: background-color 1.6s var(--ease), color 1.6s var(--ease), border-color 1.6s var(--ease);
+}
+.res-form input::placeholder, .res-form textarea::placeholder { color: var(--ph); }
+.res-form input:focus, .res-form select:focus, .res-form textarea:focus {
+  border-color: var(--gold); box-shadow: 0 0 0 4px rgb(217 164 65 / .22);
+}
+body.is-night .res-form select option { background: #083b43; color: #edf4f2; }
+.form-note.ok { color: var(--ok); }
+.form-note.err { color: var(--err); }
+body.is-night .menu::before { background: rgb(3 26 31 / .78); }
+.menu::before { transition: background-color 1.6s var(--ease); }
+body.is-night .tea { background: radial-gradient(70% 60% at 82% 40%, rgb(23 128 143 / .22), transparent 62%), linear-gradient(160deg, #062b31, var(--navy-950) 58%); }
+.tea { transition: background-color 1.6s var(--ease); }
 
 /* ---------- کاهش حرکت ---------- */
 @media (prefers-reduced-motion: reduce) {

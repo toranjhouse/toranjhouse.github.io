@@ -85,14 +85,12 @@
   };
   const setNight = (on) => {
     hero.classList.toggle("is-night", on);
+    document.body.classList.toggle("is-night", on);
     syncDn();
     try { localStorage.setItem("orsi-night", on ? "1" : "0"); } catch (e) {}
   };
   dn.addEventListener("click", () => setNight(!hero.classList.contains("is-night")));
-  let nightPref = null;
-  try { nightPref = localStorage.getItem("orsi-night"); } catch (e) {}
-  if (nightPref === "1") hero.classList.add("is-night");
-  else if (nightPref === "0") hero.classList.remove("is-night");
+  hero.classList.toggle("is-night", document.body.classList.contains("is-night"));
   syncDn();
 
   /* --- فرم رزرو (نمونهٔ نمایشی) --- */
