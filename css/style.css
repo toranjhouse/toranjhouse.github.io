@@ -399,6 +399,28 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
 }
 .menu-note .fine { margin-top: 12px; font-size: .82rem; color: rgb(242 237 227 / .6); max-width: 62ch; }
 
+
+/* دفترچهٔ منوی متنی */
+.menu-book {
+  margin-top: 40px;
+  background: linear-gradient(180deg, rgb(12 68 77 / .55), rgb(6 52 59 / .35));
+  border: 1px solid rgb(217 164 65 / .25); border-radius: var(--r-lg);
+  padding: clamp(24px, 3.4vw, 40px); backdrop-filter: blur(8px);
+}
+.menu-book h3 { font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--gold-2); text-align: center; }
+.mb-sub { text-align: center; color: rgb(242 237 227 / .65); font-size: .88rem; margin-top: 6px; }
+.mb-grid { margin-top: 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 26px 46px; }
+.mb-group h4 {
+  display: flex; align-items: center; gap: 10px; margin: 0 0 10px;
+  font-family: var(--f-disp); font-size: 1.45rem; font-weight: 700; color: var(--turq);
+  padding-bottom: 8px; border-bottom: 1.5px dashed rgb(242 237 227 / .25);
+}
+.mb-group h4::before { content: ""; width: 13px; height: 13px; flex: none; background: url("../assets/img/star.svg") center / contain no-repeat; }
+.mb-group li { display: flex; align-items: baseline; gap: 10px; padding: 7px 0; }
+.mb-group b { font-weight: 600; font-size: .95rem; color: rgb(242 237 227 / .92); }
+.mb-group .dots { flex: 1; border-bottom: 2px dotted rgb(242 237 227 / .22); transform: translateY(-4px); }
+.mb-group i { font-style: normal; color: var(--gold-2); font-weight: 700; font-size: .9rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
 /* ---------- فضاها ---------- */
 .spaces { background: var(--cream-2); color: var(--ink); padding: clamp(76px, 10vw, 132px) 0; }
 .spaces .sec-head h2 em { color: var(--turq-deep); }
