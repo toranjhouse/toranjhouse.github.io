@@ -182,36 +182,19 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
 .hero-bg .lay {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%;
   transform: scale(1.05); animation: heroIn 2.4s var(--ease) .15s both, heroZoom 22s ease-out 2.4s forwards;
-  transition: filter 2.8s var(--ease);
-  filter: brightness(1.02) saturate(1.03);
 }
-/* همان یک عکس؛ فقط نور عوض می‌شود: روز <-> شب */
-.hero.is-night .lay { filter: brightness(.36) saturate(.6) contrast(1.22) hue-rotate(-4deg); }
-.hero-tint {
-  position: absolute; inset: 0; pointer-events: none;
-  background: #07304a; mix-blend-mode: multiply;
-  opacity: 0; transition: opacity 2.8s var(--ease);
-}
-.hero.is-night .hero-tint { opacity: .72; }
-.hero-warm {
-  position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
-  opacity: 0; transition: opacity 2.8s var(--ease);
-  background:
-    radial-gradient(34% 26% at 15% 74%, rgb(255 172 58 / .6), transparent 70%),
-    radial-gradient(34% 26% at 85% 74%, rgb(255 172 58 / .6), transparent 70%),
-    radial-gradient(24% 15% at 50% 70%, rgb(255 190 90 / .22), transparent 72%),
-    radial-gradient(52% 24% at 50% 96%, rgb(255 150 50 / .5), transparent 72%);
-}
-.hero.is-night .hero-warm { opacity: 1; }
+/* یک مکان، دو نور: روز و شب خیلی آرام در هم محو می‌شوند */
+.lay-night { opacity: 0; transition: opacity 6s var(--ease); }
+.hero.is-night .lay-night { opacity: 1; }
 @keyframes heroIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes heroZoom { from { transform: scale(1.07); } to { transform: scale(1.0); } }
-.hero-veil { position: absolute; inset: 0; transition: opacity 2.4s var(--ease); }
+.hero-veil { position: absolute; inset: 0; transition: opacity 6s var(--ease); }
 .veil-night {
   opacity: 0;
   background:
-    radial-gradient(120% 90% at 50% 108%, rgb(3 34 38 / .96) 8%, rgb(3 34 38 / .55) 42%, transparent 68%),
-    linear-gradient(to bottom, rgb(2 14 26 / .62), transparent 46%),
-    linear-gradient(to top, var(--navy-900) 2%, rgb(6 52 59 / .5) 26%, rgb(6 52 59 / .12) 55%, rgb(3 34 38 / .38) 100%);
+    linear-gradient(to bottom, rgb(2 14 26 / .55), transparent 32%),
+    linear-gradient(to top, var(--navy-900) 0%, rgb(6 52 59 / .38) 16%, transparent 46%),
+    radial-gradient(130% 75% at 50% 115%, rgb(3 34 38 / .85), transparent 62%);
 }
 .hero.is-night .veil-night { opacity: 1; }
 .veil-day {
