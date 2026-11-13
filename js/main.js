@@ -85,7 +85,6 @@
   };
   const setNight = (on) => {
     hero.classList.toggle("is-night", on);
-    document.body.classList.toggle("is-night", on);
     syncDn();
     try { localStorage.setItem("orsi-night", on ? "1" : "0"); } catch (e) {}
   };

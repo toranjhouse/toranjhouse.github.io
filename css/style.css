@@ -185,21 +185,22 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
 }
 .lay-day { animation: heroIn 2.4s var(--ease) .15s both, heroZoom 22s ease-out 2.4s forwards; }
 /* یک مکان، دو نور: روز و شب خیلی آرام در هم محو می‌شوند */
-.lay-night { opacity: 0; transition: opacity 6s cubic-bezier(.45, .05, .35, .95); }
-.hero.is-night .lay-night { opacity: 1; }
+.lay-night { opacity: 0; transition: opacity 6s cubic-bezier(.45, .05, .35, .95), filter 6s cubic-bezier(.45, .05, .35, .95); }
+.hero.is-night .lay-night { opacity: 1; filter: brightness(.82) contrast(1.06) saturate(.94); }
 @keyframes heroIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes heroZoom { from { transform: scale(1.07); } to { transform: scale(1.0); } }
 .hero-veil { position: absolute; inset: 0; transition: opacity 6s cubic-bezier(.45, .05, .35, .95); }
 .veil-night {
   opacity: 0;
   background:
-    linear-gradient(to bottom, rgb(2 14 26 / .55), transparent 32%),
-    linear-gradient(to top, var(--navy-900) 0%, rgb(6 52 59 / .38) 16%, transparent 46%),
-    radial-gradient(130% 75% at 50% 115%, rgb(3 34 38 / .85), transparent 62%);
+    linear-gradient(to bottom, rgb(2 14 26 / .68), transparent 34%),
+    linear-gradient(to top, var(--navy-900) 0%, rgb(6 52 59 / .5) 18%, transparent 48%),
+    radial-gradient(130% 75% at 50% 115%, rgb(3 34 38 / .92), transparent 64%);
 }
 .hero.is-night .veil-night { opacity: 1; }
 .veil-day {
   background:
+    linear-gradient(to bottom, rgb(2 14 26 / .5), transparent 26%),
     radial-gradient(120% 90% at 50% 108%, rgb(3 34 38 / .9) 6%, rgb(3 34 38 / .4) 38%, transparent 64%),
     linear-gradient(to top, var(--navy-900) 1%, rgb(6 52 59 / .3) 22%, transparent 55%);
 }
