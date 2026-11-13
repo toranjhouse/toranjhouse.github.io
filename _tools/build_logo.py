@@ -50,6 +50,6 @@ def text_to_svg(text: str, out: Path, color: str, pad: int = 6):
     out.write_text(svg, encoding="utf-8")
     print(f"{out.name}: {out.stat().st_size/1024:.1f} KB  viewBox={vb}")
 
-text_to_svg("ارسی", OUT / "logo.svg", "#f2ede3")
-text_to_svg("ارسی", OUT / "logo-gold.svg", "#f0c46a")
+text_to_svg("ترنج", OUT / "logo.svg", "#f2ede3")
+text_to_svg("ترنج", OUT / "logo-gold.svg", "#f0c46a")
 text_to_svg("حکایتِ نور و رنگ و خاطره", OUT / "hero-verse.svg", "#f0c46a")

@@ -1,4 +1,4 @@
-/* ارسی — تعامل‌های صفحه */
+/* ترنج — تعامل‌های صفحه */
 (function () {
   "use strict";
   const $ = (s, c) => (c || document).querySelector(s);
@@ -112,7 +112,7 @@
   const setNight = (on) => {
     hero.classList.toggle("is-night", on);
     syncDn();
-    try { localStorage.setItem("orsi-night", on ? "1" : "0"); } catch (e) {}
+    try { localStorage.setItem("toranj-night", on ? "1" : "0"); } catch (e) {}
   };
   dn.addEventListener("click", () => setNight(!hero.classList.contains("is-night")));
   hero.classList.toggle("is-night", document.body.classList.contains("is-night"));
@@ -130,7 +130,7 @@
     const okPhone = /^(?:\+98|0)?9\d{9}$/.test(phone);
     if (!name) return fail("لطفاً نام خود را بنویسید.");
     if (!okPhone) return fail("شمارهٔ تماس معتبر نیست؛ نمونه: ۰۹۱۲۳۴۵۶۷۸۹");
-    if (!dateIn.value) return fail("تاریخ رفتن به خانهٔ ارسی را انتخاب کنید.");
+    if (!dateIn.value) return fail("تاریخ رفتن به خانهٔ ترنج را انتخاب کنید.");
     note.className = "form-note ok";
     note.textContent = "سپاس " + name + " عزیز! درخواست رزرو شما ثبت شد؛ میزبانِ خانه به‌زودی با شما تماس می‌گیرد. (این نسخه نمایشی است و درخواستی ارسال نمی‌شود.)";
     form.reset();
