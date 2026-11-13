@@ -204,11 +204,11 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
 }
 .lay-day { animation: heroIn 2.4s var(--ease) .15s both, heroZoom 22s ease-out 2.4s forwards; }
 /* یک مکان، دو نور: روز و شب خیلی آرام در هم محو می‌شوند */
-.lay-night { opacity: 0; transition: opacity 6s cubic-bezier(.45, .05, .35, .95), filter 6s cubic-bezier(.45, .05, .35, .95); }
-.hero.is-night .lay-night { opacity: 1; filter: brightness(.82) contrast(1.06) saturate(.94); }
+.lay-night { opacity: 0; filter: brightness(.82) contrast(1.06) saturate(.94); will-change: opacity; transition: opacity 6s cubic-bezier(.45, .05, .35, .95); }
+.hero.is-night .lay-night { opacity: 1; }
 @keyframes heroIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes heroZoom { from { transform: scale(1.07); } to { transform: scale(1.0); } }
-.hero-veil { position: absolute; inset: 0; transition: opacity 6s cubic-bezier(.45, .05, .35, .95); }
+.hero-veil { position: absolute; inset: 0; will-change: opacity; transform: translateZ(0); transition: opacity 6s cubic-bezier(.45, .05, .35, .95); }
 .veil-night {
   opacity: 0;
   background:
@@ -818,4 +818,6 @@ body.is-night .tea { background: radial-gradient(70% 60% at 82% 40%, rgb(23 128 
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
   .reveal { opacity: 1; transform: none; }
+  /* گذار روز/شب حتی با «کاهش حرکتِ» سیستم هم آرام می‌ماند: فقط محوِ نور است، نه جابه‌جایی */
+  .lay-night, .hero-veil { transition-duration: 6s !important; }
 }
