@@ -16,3 +16,6 @@ cutout = ns["cutout"]
 
 for k in ["sangak", "salad", "mast", "zeytun", "doogh", "torshi", "ash", "halva", "spread"]:
     cutout(f"kenar-{k}.png", f"dish-kenar-{k}")
+
+for k in ["chai", "damanoush", "ghahve", "bastani", "qalyan-miveh", "qalyan-asal"]:
+    cutout(f"tea-{k}.png", f"dish-tea-{k}")
