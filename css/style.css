@@ -854,7 +854,7 @@ body.is-night .res-form select option { background: #083b43; color: #edf4f2; }
 @media (max-width: 700px){ .totop{ width: 54px; height: 54px; left: 1rem; bottom: 1rem; } }
 
 /* ---------- نوار عکس‌های چای‌خانه و بار قلیان ---------- */
-.tea-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: clamp(30px, 4vw, 54px); }
+.tea-photos { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: clamp(30px, 4vw, 54px); }
 .tea-photos figure {
   position: relative; margin: 0; border-radius: 18px; overflow: hidden;
   box-shadow: 0 18px 44px -22px rgb(0 0 0 / .85);
