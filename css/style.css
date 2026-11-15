@@ -268,6 +268,55 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
 .hero-scroll:hover { color: var(--gold-2); border-color: var(--gold-2); }
 @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(7px); } }
 
+/* ---------- جعبه‌های منو: کاشی سادهٔ کنار سفره و دفترچهٔ قیمت ---------- */
+a.cat-tile { color: inherit; -webkit-tap-highlight-color: transparent; }
+.cat-tile.plain { background: radial-gradient(85% 75% at 50% 32%, #12525c, #06343b 88%); }
+.cat-tile.plain .plain-art {
+  position: absolute; inset: 0;
+  background: url("../assets/img/pattern-girih.svg") center / 112px 112px; opacity: .45;
+}
+.cat-tile.plain .cat-txt { inset: 0; padding-bottom: 0; align-content: center; }
+.price-box {
+  position: relative; display: grid; align-content: center; justify-items: center; gap: 10px;
+  border: 1px solid rgb(217 164 65 / .5); border-radius: 20px; padding: 30px 24px; text-align: center;
+  background: linear-gradient(165deg, #0c5561, #07454f 72%);
+  color: var(--cream); box-shadow: var(--shadow-1);
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease), border-color .3s;
+}
+.price-box:hover, .price-box:focus-visible { transform: translateY(-6px); border-color: var(--gold-2); }
+.price-box .pb-ic svg { width: 46px; height: 46px; color: var(--gold-2); }
+.price-box b { font-family: var(--f-disp); font-size: clamp(1.5rem, 2.4vw, 2rem); color: var(--gold-2); }
+.price-box span { color: rgb(242 237 227 / .78); font-size: .9rem; max-width: 34ch; }
+.price-box .pb-go {
+  font-style: normal; font-weight: 800; font-size: .85rem; color: var(--gold);
+  border-bottom: 1px dashed rgb(217 164 65 / .6); padding-bottom: 2px;
+}
+
+/* ---------- برگهٔ منو (menu.html) ---------- */
+.back-bar { padding: calc(var(--head-h) + 22px) 0 0; }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  border: 1px solid rgb(242 237 227 / .35); border-radius: 999px; padding: .6em 1.5em;
+  color: var(--cream); font-weight: 700; font-size: .9rem;
+  background: rgb(4 40 46 / .45); backdrop-filter: blur(8px);
+  transition: border-color .25s, color .25s, transform .25s var(--ease);
+}
+.back-btn svg { width: 17px; height: 17px; }
+.back-btn:hover { border-color: var(--gold-2); color: var(--gold-2); transform: translateY(-2px); }
+.m-tabs-wrap { padding: 20px 0 0; }
+.m-tabs { justify-content: center; flex-wrap: wrap; }
+.menu-page { padding-top: clamp(28px, 4vw, 46px); }
+.view { display: none; }
+.view.is-on { display: block; }
+.view-head { padding-bottom: clamp(26px, 4vw, 40px); }
+.dish.kenar .glass { place-items: center; }
+.glass .g-name {
+  font-family: var(--f-disp); font-size: clamp(1.25rem, 2.2vw, 1.8rem); color: var(--gold-2);
+  line-height: 1.7; text-align: center; padding: 10% 12%;
+  text-shadow: 0 2px 16px rgb(0 0 0 / .65);
+}
+
+
 /* ---------- حکایت ---------- */
 .story { background: var(--cream); color: var(--ink); padding: clamp(76px, 10vw, 132px) 0; }
 .story-grid { display: grid; grid-template-columns: 5fr 6fr; gap: clamp(38px, 6vw, 84px); align-items: center; }
@@ -773,9 +822,9 @@ body.is-night .tea { background: radial-gradient(70% 60% at 82% 40%, rgb(23 128 
 /* ---------- ویترین دسته‌های منو ---------- */
 .menu[data-view="cats"] .menu-tabs, .menu[data-view="cats"] .menu-grid { display: none; }
 .menu[data-view="grid"] .menu-cats { display: none; }
-.menu-cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.menu-cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .cat-tile {
-  position: relative; border: 0; padding: 0; border-radius: 20px; overflow: hidden; cursor: pointer;
+  position: relative; display: block; border: 0; padding: 0; border-radius: 20px; overflow: hidden; cursor: pointer;
   aspect-ratio: 3 / 4; background: var(--navy-800);
   box-shadow: 0 18px 44px -22px rgb(0 0 0 / .85);
   transition: transform .5s var(--ease), box-shadow .5s var(--ease);

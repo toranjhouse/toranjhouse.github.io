@@ -54,51 +54,7 @@
   }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
   $$(".reveal").forEach((el) => revealIO.observe(el));
 
-  /* --- پالایش منو --- */
-  const tabs = $$(".tab").filter((t) => t.dataset.cat);
-  const dishes = $$("#menuGrid .dish");
-  const menuSec = $("#menu");
-  const catsBox = $("#menuCats");
-  const applyFilter = (cat) => {
-    tabs.forEach((t) => {
-      const on = t.dataset.cat === cat;
-      t.classList.toggle("is-on", on);
-      t.setAttribute("aria-pressed", String(on));
-    });
-    dishes.forEach((d) => {
-      const show = d.dataset.cat === cat;
-      d.classList.toggle("is-hidden", !show);
-      if (show && !reduced) {
-        d.style.animation = "none";
-        void d.offsetWidth;
-        d.style.animation = "dishIn .5s var(--ease) both";
-      }
-    });
-  };
-  const bringIntoView = (el) => requestAnimationFrame(() => {
-    const r = el.getBoundingClientRect();
-    if (r.top < 92 || r.top > innerHeight * 0.45)
-      scrollTo({ top: scrollY + r.top - 92, behavior: reduced ? "auto" : "smooth" });
-  });
-  tabs.forEach((tab) => tab.addEventListener("click", () => {
-    menuSec.dataset.view = "grid";
-    applyFilter(tab.dataset.cat);
-  }));
-  $$(".cat-tile").forEach((tile) => tile.addEventListener("click", () => {
-    menuSec.dataset.view = "grid";
-    applyFilter(tile.dataset.cat);
-    bringIntoView($(".menu-tabs"));
-  }));
-  $("#catsBack").addEventListener("click", () => {
-    menuSec.dataset.view = "cats";
-    tabs.forEach((t) => { t.classList.remove("is-on"); t.setAttribute("aria-pressed", "false"); });
-    bringIntoView(catsBox);
-  });
-  const st = document.createElement("style");
-  st.textContent = "@keyframes dishIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}";
-  document.head.appendChild(st);
-
-  /* --- دکمه‌ی روز/شب هیرو: یک عکس، گذار آرامِ نور --- */
+/* --- دکمه‌ی روز/شب هیرو: یک عکس، گذار آرامِ نور --- */
   const hero = $("#hero");
   const dn = $("#daynight");
   const syncDn = () => {
@@ -114,12 +70,15 @@
     syncDn();
     try { localStorage.setItem("toranj-night", on ? "1" : "0"); } catch (e) {}
   };
-  dn.addEventListener("click", () => setNight(!hero.classList.contains("is-night")));
-  hero.classList.toggle("is-night", document.body.classList.contains("is-night"));
-  syncDn();
+  if (dn && hero) {
+    dn.addEventListener("click", () => setNight(!hero.classList.contains("is-night")));
+    hero.classList.toggle("is-night", document.body.classList.contains("is-night"));
+    syncDn();
+  }
 
   /* --- فرم رزرو (نمونه‌ی نمایشی) --- */
   const form = $("#resForm");
+  if (form) {
   const note = $("#formNote");
   const dateIn = form.querySelector('input[name="date"]');
   dateIn.min = new Date().toISOString().slice(0, 10);
@@ -136,6 +95,7 @@
     form.reset();
     function fail(msg) { note.className = "form-note err"; note.textContent = msg; return false; }
   });
+  }
 
   /* --- دکمه‌ی بازگشت به سرصفحه (مدالیون شمسه) --- */
   const toTop = $("#toTop");
