@@ -59,8 +59,9 @@ html {
 }
 body {
   margin: 0;
-  background: var(--navy-900);
-  color: var(--cream);
+  background: var(--page);
+  color: var(--band-ink);
+  transition: background-color var(--theme-t) var(--theme-e), color var(--theme-t) var(--theme-e);
   font-family: var(--f-body);
   font-size: clamp(15px, .55vw + 13px, 17px);
   line-height: 1.9;
@@ -106,7 +107,7 @@ h1 em, h2 em { font-style: normal; color: var(--gold-2); }
 
 .sec-head { text-align: center; margin-bottom: clamp(34px, 5vw, 58px); }
 .sec-head h2 { font-size: clamp(2.2rem, 5vw, 3.4rem); margin-top: 6px; }
-.sec-sub { color: rgb(242 237 227 / .72); max-width: 56ch; margin: 10px auto 0; }
+.sec-sub { color: var(--band-soft); max-width: 56ch; margin: 10px auto 0; transition: color var(--theme-t) var(--theme-e); }
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -328,7 +329,7 @@ a.cat-tile { color: inherit; -webkit-tap-highlight-color: transparent; }
 .story .eyebrow::before { background-image: url("../assets/img/star.svg"); }
 .story h2 { font-size: clamp(2.1rem, 4.6vw, 3.3rem); margin-top: 6px; }
 .story h2 em { color: var(--carpet); }
-.story .lead { font-size: 1.12rem; font-weight: 600; color: var(--on-light); margin-top: 14px; transition: color 1.6s var(--ease); }
+.story .lead { font-size: 1.12rem; font-weight: 600; color: var(--on-light); margin-top: 14px; transition: color var(--theme-t) var(--theme-e); }
 .story-copy p + p { margin-top: 12px; color: var(--ink-soft); }
 .story-media { margin: 0; position: relative; }
 .arch {
@@ -374,24 +375,42 @@ a.cat-tile { color: inherit; -webkit-tap-highlight-color: transparent; }
 /* ---------- منو ---------- */
 .menu {
   position: relative; padding: clamp(76px, 10vw, 132px) 0;
+  color: var(--band-ink);
+  background:
+    radial-gradient(90% 60% at 50% -8%, rgb(23 128 143 / .2), transparent 60%),
+    linear-gradient(rgb(240 251 249 / .5), rgb(240 251 249 / .5)),
+    url("../assets/img/pattern-girih.svg"),
+    #b9e4de;
+  background-size: auto, auto, 184px 184px, auto;
+  transition: color var(--theme-t) var(--theme-e);
+}
+.menu::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
   background:
     radial-gradient(90% 60% at 50% -8%, rgb(20 102 114 / .5), transparent 60%),
     url("../assets/img/pattern-girih.svg"),
     var(--navy-900);
   background-size: auto, 184px 184px, auto;
+  opacity: 0; transition: opacity var(--theme-t) var(--theme-e);
 }
+body.is-night .menu::after { opacity: 1; }
 .menu::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(rgb(6 52 59 / .34), rgb(6 52 59 / .5) 55%, rgb(6 52 59 / .34));
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: rgb(3 26 31 / .78);
+  opacity: 0; transition: opacity var(--theme-t) var(--theme-e);
 }
-.menu > * { position: relative; }
-.menu .sec-sub { color: rgb(242 237 227 / .66); }
+body.is-night .menu::before { opacity: 1; }
+.menu > * { position: relative; z-index: 2; }
+.menu .sec-sub { color: var(--band-soft); }
 
+.menu .eyebrow, .tea .eyebrow, .view-head .eyebrow { color: var(--band-eyebrow); transition: color var(--theme-t) var(--theme-e); }
+.menu h2 em { color: var(--band-em); transition: color var(--theme-t) var(--theme-e); }
 .menu-tabs { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 34px; }
 .tab {
   border-radius: 999px; padding: .55em 1.5em; cursor: pointer;
-  border: 1.5px solid rgb(242 237 227 / .28); background: rgb(242 237 227 / .05);
-  color: rgb(242 237 227 / .85); font-weight: 700; font-size: .9rem;
+  border: 1.5px solid var(--tab-br); background: var(--tab-bg);
+  color: var(--tab-ink); font-weight: 700; font-size: .9rem;
+  transition: border-color var(--theme-t) var(--theme-e), background-color var(--theme-t) var(--theme-e), color var(--theme-t) var(--theme-e);
   transition: all .25s var(--ease);
 }
 .tab:hover { border-color: var(--gold); color: var(--gold-2); }
@@ -535,22 +554,33 @@ a.cat-tile { color: inherit; -webkit-tap-highlight-color: transparent; }
 /* ---------- چای‌خانه ---------- */
 .tea {
   position: relative; padding: clamp(76px, 10vw, 132px) 0; overflow: hidden;
+  color: var(--band-ink);
   background:
-    radial-gradient(70% 60% at 82% 40%, rgb(23 128 143 / .35), transparent 62%),
-    linear-gradient(160deg, #083b41, var(--navy-900) 58%);
+    radial-gradient(70% 60% at 82% 40%, rgb(23 128 143 / .28), transparent 62%),
+    linear-gradient(160deg, #d7f1ed, #b9e4de 58%);
+  transition: color var(--theme-t) var(--theme-e);
 }
-.tea-grid { display: grid; grid-template-columns: 6fr 5fr; gap: clamp(34px, 5vw, 70px); align-items: center; }
+.tea::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(70% 60% at 82% 40%, rgb(23 128 143 / .22), transparent 62%),
+    linear-gradient(160deg, #062b31, var(--navy-950) 58%);
+  opacity: 0; transition: opacity var(--theme-t) var(--theme-e);
+}
+body.is-night .tea::after { opacity: 1; }
+.tea-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 6fr 5fr; gap: clamp(34px, 5vw, 70px); align-items: center; }
 .tea h2 { font-size: clamp(2.1rem, 4.6vw, 3.3rem); margin-top: 6px; }
-.tea h2 em { color: var(--turq); }
-.tea-copy > p { color: rgb(242 237 227 / .78); margin-top: 14px; max-width: 50ch; }
+.tea h2 em { color: var(--tea-em); transition: color var(--theme-t) var(--theme-e); }
+.tea-copy > p { color: var(--band-soft); margin-top: 14px; max-width: 50ch; transition: color var(--theme-t) var(--theme-e); }
 .tea-list { margin-top: 26px; }
 .tea-list li { display: flex; align-items: baseline; gap: 12px; padding: 13px 2px; border-bottom: 1px dashed rgb(242 237 227 / .22); }
 .tea-list b { font-weight: 700; font-size: 1.02rem; }
 .tea-list .dots { flex: 1; border-bottom: 2px dotted rgb(242 237 227 / .25); transform: translateY(-4px); }
 .tea-list i { font-style: normal; color: var(--gold-2); font-weight: 800; font-variant-numeric: tabular-nums; }
 .tea-list i::after { content: " تومان"; font-size: .74em; font-weight: 600; opacity: .75; }
-.tea-note { margin-top: 18px; font-size: .88rem; color: rgb(242 237 227 / .62); }
-.tea-art { margin: 0; display: grid; place-items: center; }
+.tea-note { margin-top: 18px; font-size: .88rem; color: var(--band-soft); transition: color var(--theme-t) var(--theme-e); }
+.tea-art { margin: 0; display: grid; place-items: center; border-radius: 50%; transition: background-color var(--theme-t) var(--theme-e); }
+body:not(.is-night) .tea-art { background: radial-gradient(circle closest-side, #0a444d 92%, rgb(10 68 77 / 0) 100%); }
 .tea-art svg { width: min(100%, 400px); }
 .steam path { stroke-dasharray: 60; stroke-dashoffset: 60; animation: steam 3.4s ease-in-out infinite; }
 .steam path:nth-child(2) { animation-delay: .5s; }
@@ -695,15 +725,26 @@ a.cat-tile { color: inherit; -webkit-tap-highlight-color: transparent; }
 :root {
   --accent-warm: #a63a2b;
   --accent-cool: #17808f;
-  --sec-light: #f2ede3;
-  --sec-light-2: #e7dfcf;
-  --on-light: #1b2440;
-  --on-light-soft: #4a5573;
-  --on-light-label: rgb(27 36 64 / .8);
-  --card: #fbf8f1;
-  --field: #ffffff;
-  --field-br: rgb(27 36 64 / .16);
-  --ph: rgb(27 36 64 / .38);
+  --sec-light: #cfeee9;
+  --sec-light-2: #bae4de;
+  --on-light: #14383e;
+  --on-light-soft: #40646b;
+  --on-light-label: rgb(20 56 62 / .8);
+  --card: #ecfaf7;
+  --field: #f8fdfc;
+  --field-br: rgb(20 56 62 / .18);
+  --ph: rgb(20 56 62 / .38);
+  --page: #bfe7e1;
+  --band-ink: #123a40;
+  --band-soft: rgb(18 58 64 / .74);
+  --tab-ink: rgb(18 58 64 / .85);
+  --tab-br: rgb(18 58 64 / .3);
+  --tab-bg: rgb(255 255 255 / .35);
+  --band-em: #a63a2b;
+  --tea-em: #0f7f8f;
+  --band-eyebrow: #0f7f8f;
+  --theme-t: 6s;
+  --theme-e: cubic-bezier(.45, .05, .35, .95);
   --ok: #1c7a45;
   --err: #b3372a;
   --tile-veil: 0;
@@ -723,48 +764,57 @@ body.is-night {
   --ok: #86e0a7;
   --err: #ff9c8d;
   --tile-veil: .13;
+  --page: #06343b;
+  --band-ink: #f2ede3;
+  --band-soft: rgb(242 237 227 / .72);
+  --tab-ink: rgb(242 237 227 / .85);
+  --tab-br: rgb(242 237 227 / .28);
+  --tab-bg: rgb(242 237 227 / .05);
+  --band-em: #f0c46a;
+  --tea-em: #2fb9c9;
+  --band-eyebrow: #d9a441;
 }
 .story, .spaces, .reserve {
   position: relative;
   background: var(--sec-light);
   color: var(--on-light);
-  transition: background-color 1.6s var(--ease), color 1.6s var(--ease);
+  transition: background-color var(--theme-t) var(--theme-e), color var(--theme-t) var(--theme-e);
 }
 .spaces { background: var(--sec-light-2); }
 .story::before, .spaces::before, .reserve::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  opacity: var(--tile-veil); transition: opacity 1.6s var(--ease);
+  opacity: var(--tile-veil); transition: opacity var(--theme-t) var(--theme-e);
   background: url("../assets/img/pattern-girih.svg") center / 184px 184px;
 }
 .story > *, .spaces > *, .reserve > * { position: relative; }
 
 .story h2 em, .story .eyebrow, .reserve h2 em, .reserve .eyebrow, .story-link a {
-  color: var(--accent-warm); transition: color 1.6s var(--ease);
+  color: var(--accent-warm); transition: color var(--theme-t) var(--theme-e);
 }
 .spaces h2 em, .spaces .eyebrow, .spaces-soon b, .res-info a, .res-info svg {
-  color: var(--accent-cool); transition: color 1.6s var(--ease);
+  color: var(--accent-cool); transition: color var(--theme-t) var(--theme-e);
 }
 .story-copy p + p, .story-points li, .spaces .sec-sub, .reserve .res-copy > p,
-.res-info span, .spaces-soon { color: var(--on-light-soft); transition: color 1.6s var(--ease); }
+.res-info span, .spaces-soon { color: var(--on-light-soft); transition: color var(--theme-t) var(--theme-e); }
 .story-link a { border-bottom-color: rgb(166 58 43 / .35); }
 body.is-night .story-link a { border-bottom-color: rgb(229 154 108 / .4); }
 .spaces-soon {
   background: rgb(255 255 255 / .5); border-color: rgb(23 128 143 / .45);
-  transition: background-color 1.6s var(--ease), border-color 1.6s var(--ease), color 1.6s var(--ease);
+  transition: background-color var(--theme-t) var(--theme-e), border-color var(--theme-t) var(--theme-e), color var(--theme-t) var(--theme-e);
 }
 body.is-night .spaces-soon { background: rgb(255 255 255 / .05); border-color: rgb(79 208 220 / .35); }
 body.is-night .story-cap { background: #05262c; }
-.story-cap { transition: background-color 1.6s var(--ease); }
+.story-cap { transition: background-color var(--theme-t) var(--theme-e); }
 
 .res-form {
   background: var(--card); border-color: rgb(27 36 64 / .12);
-  transition: background-color 1.6s var(--ease), border-color 1.6s var(--ease);
+  transition: background-color var(--theme-t) var(--theme-e), border-color var(--theme-t) var(--theme-e);
 }
 body.is-night .res-form { border-color: rgb(237 244 242 / .14); }
-.res-form label > span { color: var(--on-light-label); transition: color 1.6s var(--ease); }
+.res-form label > span { color: var(--on-light-label); transition: color var(--theme-t) var(--theme-e); }
 .res-form input, .res-form select, .res-form textarea {
   background: var(--field); color: var(--on-light); border-color: var(--field-br);
-  transition: background-color 1.6s var(--ease), color 1.6s var(--ease), border-color 1.6s var(--ease);
+  transition: background-color var(--theme-t) var(--theme-e), color var(--theme-t) var(--theme-e), border-color var(--theme-t) var(--theme-e);
 }
 .res-form input::placeholder, .res-form textarea::placeholder { color: var(--ph); }
 .res-form input:focus, .res-form select:focus, .res-form textarea:focus {
@@ -773,10 +823,9 @@ body.is-night .res-form { border-color: rgb(237 244 242 / .14); }
 body.is-night .res-form select option { background: #083b43; color: #edf4f2; }
 .form-note.ok { color: var(--ok); }
 .form-note.err { color: var(--err); }
-body.is-night .menu::before { background: rgb(3 26 31 / .78); }
-.menu::before { transition: background-color 1.6s var(--ease); }
-body.is-night .tea { background: radial-gradient(70% 60% at 82% 40%, rgb(23 128 143 / .22), transparent 62%), linear-gradient(160deg, #062b31, var(--navy-950) 58%); }
-.tea { transition: background-color 1.6s var(--ease); }
+
+.menu::before { transition: background-color var(--theme-t) var(--theme-e); }
+
 
 
 /* ---------- دکمهٔ بازگشت به سرصفحه: مدالیون شمسهٔ فیروزه‌ای ---------- */

@@ -5,6 +5,8 @@
   const tabs = $$(".m-tabs .tab");
   const views = $$(".view");
   const key = () => (location.hash || "#kabab").slice(1);
+  const head = document.querySelector(".site-head");
+  if (head) head.classList.add("is-scrolled");
   const back = $(".back-btn");
   const backTxt = back && back.querySelector(".bb-txt");
   const show = (k) => {

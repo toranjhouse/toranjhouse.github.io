@@ -67,11 +67,15 @@
   };
   const setNight = (on) => {
     hero.classList.toggle("is-night", on);
+    document.body.classList.toggle("is-night", on);
     syncDn();
     try { localStorage.setItem("toranj-night", on ? "1" : "0"); } catch (e) {}
   };
   if (dn && hero) {
     dn.addEventListener("click", () => setNight(!hero.classList.contains("is-night")));
+    let saved = null;
+    try { saved = localStorage.getItem("toranj-night"); } catch (e) {}
+    if (saved === "0") document.body.classList.remove("is-night");
     hero.classList.toggle("is-night", document.body.classList.contains("is-night"));
     syncDn();
   }
