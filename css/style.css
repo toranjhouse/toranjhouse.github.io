@@ -923,3 +923,37 @@ body.is-night .res-form select option { background: #083b43; color: #edf4f2; }
   /* گذار روز/شب حتی با «کاهش حرکتِ» سیستم هم آرام می‌ماند: فقط محوِ نور است، نه جابه‌جایی */
   .lay-night, .hero-veil { transition-duration: 6s !important; }
 }
+
+/* ---------- گاه‌شماری شمسی فرم رزرو ---------- */
+.jdate-wrap { position: relative; }
+.jdate-btn {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%;
+  background: var(--field); color: var(--on-light); border: 1px solid var(--field-br);
+  border-radius: 12px; padding: .72em .9em; font: inherit; cursor: pointer; text-align: start;
+  transition: border-color .2s, box-shadow .2s, background-color var(--theme-t) var(--theme-e), color var(--theme-t) var(--theme-e);
+}
+.jdate-btn svg { width: 19px; height: 19px; color: var(--accent-cool); flex: none; }
+.jdate-btn:focus-visible { border-color: var(--gold); box-shadow: 0 0 0 4px rgb(217 164 65 / .22); }
+.jcal {
+  position: absolute; top: calc(100% + 8px); inset-inline: 0; z-index: 65;
+  background: var(--card); border: 1px solid var(--field-br); border-radius: 16px;
+  box-shadow: 0 24px 60px -18px rgb(0 0 0 / .5); padding: 12px;
+}
+.jcal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.jc-title { font-family: var(--f-disp); font-size: 1.05rem; color: var(--on-light); }
+.jc-nav {
+  width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--field-br);
+  background: none; color: var(--on-light); cursor: pointer; font-size: 1.05rem; line-height: 1;
+}
+.jc-nav:hover { border-color: var(--gold); color: var(--gold-deep); }
+.jcal-dow, .jcal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.jcal-dow span { text-align: center; font-size: .72rem; color: var(--on-light-soft); padding: 4px 0; }
+.jcal-grid button {
+  aspect-ratio: 1; border: 0; border-radius: 10px; background: none; color: var(--on-light);
+  font-size: .85rem; cursor: pointer; font-family: inherit;
+}
+.jcal-grid button:hover:not(:disabled) { background: rgb(23 128 143 / .14); }
+.jcal-grid button:disabled { opacity: .28; cursor: default; }
+.jcal-grid button.is-today { box-shadow: inset 0 0 0 1px var(--accent-cool); }
+.jcal-grid button.is-sel { background: var(--gold); color: #241703; font-weight: 700; }
+.form-note a { color: inherit; font-weight: 700; border-bottom: 1px dashed currentColor; }
