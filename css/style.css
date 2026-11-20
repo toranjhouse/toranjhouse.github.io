@@ -666,14 +666,14 @@ body:not(.is-night) .tea-art { background: radial-gradient(circle closest-side, 
   .nav {
     position: fixed; inset: 0; z-index: 70;
     background: rgb(3 34 38 / .96); backdrop-filter: blur(18px);
-    flex-direction: column; align-items: center; justify-content: flex-start; gap: 6px;
-    overflow-y: auto; padding: calc(var(--head-h) + 3vh) 20px 6vh;
+    flex-direction: column; align-items: center; justify-content: flex-start; gap: 2px;
+    overflow-y: auto; padding: calc(var(--head-h) + 2vh) 20px 4vh;
     opacity: 0; visibility: hidden; transition: opacity .35s, visibility .35s;
   }
   .nav a:first-child { margin-top: auto; }
   .nav a:last-child { margin-bottom: auto; }
   .nav.is-open { opacity: 1; visibility: visible; }
-  .nav a { font-family: var(--f-disp); font-size: 1.9rem; padding: 10px 26px; }
+  .nav a { font-family: var(--f-disp); font-size: clamp(1.12rem, 4.4vw, 1.45rem); padding: 6px 18px; }
   .burger {
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; z-index: 75;
     width: 44px; height: 44px; background: rgb(242 237 227 / .08);
